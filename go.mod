@@ -1,4 +1,4 @@
-module github.com/guil95/grpc-bidirectional-stream-example
+module github.com/guil95/grpc-streams-example
 
 go 1.17
 

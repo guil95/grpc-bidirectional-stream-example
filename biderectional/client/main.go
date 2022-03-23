@@ -7,7 +7,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/guil95/grpc-bidirectional-stream-example/pb/chat"
+	"github.com/guil95/grpc-streams-example/biderectional/pb/chat"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )
@@ -37,7 +37,7 @@ func main() {
 			if err != nil {
 				log.Fatal(err)
 			}
-			fmt.Println(fmt.Sprintf("%sSay: %s", resp.Name, resp.Message))
+			fmt.Println(fmt.Sprintf("\n%sSay: %s", resp.Name, resp.Message))
 		}
 	}()
 

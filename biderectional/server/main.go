@@ -7,7 +7,7 @@ import (
 	"net"
 	"os"
 
-	"github.com/guil95/grpc-bidirectional-stream-example/pb/chat"
+	"github.com/guil95/grpc-streams-example/biderectional/pb/chat"
 	"google.golang.org/grpc"
 )
 
@@ -37,7 +37,7 @@ func (s *server) Chat(srv chat.Service_ChatServer) error {
 			return err
 		}
 
-		fmt.Println(fmt.Sprintf("%sSay: %s", req.Name, req.Message))
+		fmt.Println(fmt.Sprintf("\n%sSay: %s", req.Name, req.Message))
 
 		if chatMessage.name == "" && chatMessage.message == "" {
 			fmt.Println("Your Name: ")
