@@ -1,0 +1,32 @@
+{
+  "products": [
+    {
+      "description": "Product 1",
+      "value": 50
+    },
+    {
+      "description": "Product 2",
+      "value": 10
+    },
+    {
+      "description": "Product 3",
+      "value": 30
+    },
+    {
+      "description": "Product 4",
+      "value": 20
+    },
+    {
+      "description": "Product 5",
+      "value": 40
+    },
+    {
+      "description": "Product 6",
+      "value": 10
+    },
+    {
+      "description": "Product 7",
+      "value": 57
+    }
+  ]
+}

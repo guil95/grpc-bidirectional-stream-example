@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package chat;
+option go_package = "./products";
+import "google/protobuf/empty.proto";
+
+service ProductService {
+  rpc ListProducts(google.protobuf.Empty) returns (stream Product) {}
+}
+
+message Product {
+  string description = 1;
+  int64 value = 2;
+}
