@@ -1,2 +1,2 @@
 # grpc-bidirectional-stream-example
-Chat using bidirectional stream for grpc
+Chat using bidirectional stream with grpc
