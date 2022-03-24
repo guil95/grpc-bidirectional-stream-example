@@ -47,12 +47,10 @@ func main() {
 			in := bufio.NewReader(os.Stdin)
 			chatMessage.name, err = in.ReadString('\n')
 			fmt.Println("Your message: ")
-			in = bufio.NewReader(os.Stdin)
-			chatMessage.message, err = in.ReadString('\n')
-		} else {
-			in := bufio.NewReader(os.Stdin)
-			chatMessage.message, err = in.ReadString('\n')
 		}
+
+		in := bufio.NewReader(os.Stdin)
+		chatMessage.message, err = in.ReadString('\n')
 
 		if chatMessage.message == "/quit" {
 			err := stream.CloseSend()

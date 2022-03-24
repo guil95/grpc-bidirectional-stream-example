@@ -48,7 +48,7 @@ func (s *server) Chat(srv chat.Service_ChatServer) error {
 
 		in := bufio.NewReader(os.Stdin)
 		chatMessage.message, err = in.ReadString('\n')
-		
+
 		resp := chat.Response{Name: chatMessage.name, Message: chatMessage.message}
 		if err := srv.Send(&resp); err != nil {
 			log.Fatal(err)
