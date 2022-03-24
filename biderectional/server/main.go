@@ -44,13 +44,11 @@ func (s *server) Chat(srv chat.Service_ChatServer) error {
 			in := bufio.NewReader(os.Stdin)
 			chatMessage.name, err = in.ReadString('\n')
 			fmt.Println("Your message: ")
-			in = bufio.NewReader(os.Stdin)
-			chatMessage.message, err = in.ReadString('\n')
-		} else {
-			in := bufio.NewReader(os.Stdin)
-			chatMessage.message, err = in.ReadString('\n')
 		}
 
+		in := bufio.NewReader(os.Stdin)
+		chatMessage.message, err = in.ReadString('\n')
+		
 		resp := chat.Response{Name: chatMessage.name, Message: chatMessage.message}
 		if err := srv.Send(&resp); err != nil {
 			log.Fatal(err)
