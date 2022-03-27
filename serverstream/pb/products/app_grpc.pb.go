@@ -46,7 +46,7 @@ func (c *productServiceClient) ListProducts(ctx context.Context, in *emptypb.Emp
 }
 
 type ProductService_ListProductsClient interface {
-	Recv() (*Product, error)
+	Recv() (*ProductList, error)
 	grpc.ClientStream
 }
 
@@ -54,8 +54,8 @@ type productServiceListProductsClient struct {
 	grpc.ClientStream
 }
 
-func (x *productServiceListProductsClient) Recv() (*Product, error) {
-	m := new(Product)
+func (x *productServiceListProductsClient) Recv() (*ProductList, error) {
+	m := new(ProductList)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -99,7 +99,7 @@ func _ProductService_ListProducts_Handler(srv interface{}, stream grpc.ServerStr
 }
 
 type ProductService_ListProductsServer interface {
-	Send(*Product) error
+	Send(*ProductList) error
 	grpc.ServerStream
 }
 
@@ -107,7 +107,7 @@ type productServiceListProductsServer struct {
 	grpc.ServerStream
 }
 
-func (x *productServiceListProductsServer) Send(m *Product) error {
+func (x *productServiceListProductsServer) Send(m *ProductList) error {
 	return x.ServerStream.SendMsg(m)
 }
 

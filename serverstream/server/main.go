@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"google.golang.org/protobuf/types/known/emptypb"
 	"io/ioutil"
 	"log"
@@ -19,7 +18,7 @@ type server struct {
 }
 
 type ProductList struct {
-	ProductList []Product `json:"products"`
+	Products []Product `json:"products"`
 }
 
 type Product struct {
@@ -44,11 +43,21 @@ func (s *server) ListProducts(req *emptypb.Empty, srv products.ProductService_Li
 		return err
 	}
 
-	for i, p := range productList.ProductList {
-		log.Println(fmt.Sprintf("Chave: %d produto: %s", i, p.Description))
-		time.Sleep(time.Second * 2)
-		srv.Send(&products.Product{Description: p.Description, Value: p.Value})
+	var productsResponse []*products.Product
+	productsResponseLength := 0
+	productsChunkSize := 10
+
+	for _, p := range productList.Products {
+		productsResponse = append(productsResponse, &products.Product{Description: p.Description, Value: p.Value})
+		productsResponseLength++
+
+		if productsResponseLength == productsChunkSize {
+			sendResponse(productsResponse, srv)
+			productsResponseLength = 0
+		}
 	}
+
+	sendResponse(productsResponse, srv)
 
 	return nil
 }
@@ -62,8 +71,13 @@ func main() {
 	s := grpc.NewServer()
 	products.RegisterProductServiceServer(s, &server{})
 
-	log.Println("Server running")
+	log.Println("Server running on port 50002")
 	if err := s.Serve(lis); err != nil {
 		log.Fatal(err)
 	}
+}
+
+func sendResponse(productsResponse []*products.Product, srv products.ProductService_ListProductsServer) {
+	time.Sleep(time.Second * 2)
+	srv.Send(&products.ProductList{Products: productsResponse})
 }

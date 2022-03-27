@@ -5,7 +5,11 @@ option go_package = "./products";
 import "google/protobuf/empty.proto";
 
 service ProductService {
-  rpc ListProducts(google.protobuf.Empty) returns (stream Product) {}
+  rpc ListProducts(google.protobuf.Empty) returns (stream ProductList) {}
+}
+
+message ProductList {
+  repeated Product products = 1;
 }
 
 message Product {
