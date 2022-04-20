@@ -1,2 +1,2 @@
 # grpc-streams-example
-Services using stream with grpc
+Grpc streams example with golang
